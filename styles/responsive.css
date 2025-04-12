@@ -1,0 +1,269 @@
+/*
+* DesignCraft Studio - Responsive Stylesheet
+* Contains all responsive rules for different screen sizes
+*/
+
+/* ---------- Medium Devices (Tablets, less than 992px) ---------- */
+@media (max-width: 991.98px) {
+    /* Typography adjustments */
+    h1 {
+        font-size: var(--font-size-4xl);
+    }
+    
+    h2 {
+        font-size: var(--font-size-3xl);
+    }
+    
+    /* Header and navigation */
+    .nav-toggle-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+        position: relative;
+        z-index: 1001;
+    }
+    
+    .nav-toggle-label span,
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+        display: block;
+        background-color: var(--color-primary);
+        height: 2px;
+        width: 24px;
+        position: relative;
+        transition: all var(--transition-normal);
+    }
+    
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+        content: '';
+        position: absolute;
+    }
+    
+    .nav-toggle-label span::before {
+        bottom: 8px;
+    }
+    
+    .nav-toggle-label span::after {
+        top: 8px;
+    }
+    
+    .nav-toggle {
+        display: none;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 100vh;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-lg);
+        transform: translateX(100%);
+        transition: transform var(--transition-normal);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+    
+    .nav-toggle:checked ~ .nav-links {
+        transform: translateX(0);
+    }
+    
+    .nav-toggle:checked ~ .nav-toggle-label span {
+        background-color: transparent;
+    }
+    
+    .nav-toggle:checked ~ .nav-toggle-label span::before {
+        transform: rotate(45deg);
+        bottom: 0;
+    }
+    
+    .nav-toggle:checked ~ .nav-toggle-label span::after {
+        transform: rotate(-45deg);
+        top: 0;
+    }
+    
+    /* Hero section */
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-cta {
+        justify-content: center;
+    }
+    
+    .hero-visual {
+        margin-top: var(--spacing-xl);
+    }
+    
+    /* Portfolio section */
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .portfolio-item.large {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+    
+    /* Contact section */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+    
+    .contact-content {
+        text-align: center;
+    }
+    
+    .contact-info {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* ---------- Small Devices (Landscape Phones, less than 768px) ---------- */
+@media (max-width: 767.98px) {
+    /* Section spacing */
+    section {
+        padding: var(--spacing-2xl) 0;
+    }
+    
+    /* Typography */
+    h1 {
+        font-size: var(--font-size-3xl);
+    }
+    
+    h2 {
+        font-size: var(--font-size-2xl);
+    }
+    
+    /* Services grid */
+    .services-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    /* Portfolio grid */
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .portfolio-item {
+        min-height: 250px;
+    }
+    
+    .portfolio-item.large {
+        grid-column: span 1;
+    }
+    
+    /* Testimonial cards */
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin: 0 auto;
+    }
+    
+    /* Contact form */
+    .contact-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
+
+/* ---------- Extra Small Devices (Portrait Phones, less than 576px) ---------- */
+@media (max-width: 575.98px) {
+    /* Container padding */
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    /* Hero section */
+    .hero {
+        padding-top: calc(var(--spacing-2xl) + 4rem);
+    }
+    
+    .hero h1 {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .blob {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .device-mockup {
+        width: 220px;
+        height: 400px;
+    }
+    
+    /* CTA section */
+    .cta h2 {
+        font-size: var(--font-size-xl);
+    }
+    
+    .cta p {
+        font-size: var(--font-size-base);
+    }
+    
+    /* Footer */
+    .footer-grid {
+        gap: var(--spacing-lg);
+    }
+    
+    .footer-about {
+        grid-column: span 1;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+    
+    .footer-bottom ul {
+        justify-content: center;
+    }
+}
+
+/* ---------- Utility Classes for Responsive Behavior ---------- */
+@media (max-width: 991.98px) {
+    .hide-md {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hide-sm {
+        display: none !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hide-xs {
+        display: none !important;
+    }
+}
