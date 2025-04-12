@@ -908,6 +908,44 @@ header {
     opacity: 1;
 }
 
+@media (max-width: 767.98px) {
+    .portfolio-overlay {
+        height: 100%;
+        opacity: 0.9;
+        transform: translateY(0);
+    }
+    
+    .portfolio-overlay h3,
+    .portfolio-overlay p,
+    .portfolio-overlay .btn {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Touch device support */
+.portfolio-item.is-touched {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-xl), 0 15px 35px rgba(91, 69, 255, 0.2);
+}
+
+.portfolio-item.is-touched .portfolio-overlay {
+    height: 100%;
+    opacity: 0.9;
+    transform: translateY(0);
+}
+
+.portfolio-item.is-touched .portfolio-overlay h3,
+.portfolio-item.is-touched .portfolio-overlay p,
+.portfolio-item.is-touched .portfolio-overlay .btn {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.portfolio-item.is-touched .for-sale-badge {
+    animation: badge-pulse 1.5s infinite;
+}
+
 /* ---------- Testimonials Section ---------- */
 .testimonials {
     background-color: white;

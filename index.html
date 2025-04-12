@@ -457,6 +457,16 @@
                 offset: 120
             });
             
+            // Add touch support for portfolio items on mobile devices
+            if ('ontouchstart' in window || navigator.msMaxTouchPoints) {
+                document.querySelectorAll('.portfolio-item').forEach(item => {
+                    item.addEventListener('touchstart', function() {
+                        // Toggle a class to simulate hover state
+                        this.classList.toggle('is-touched');
+                    });
+                });
+            }
+            
             // Mouse parallax effect
             const parallaxContainer = document.querySelector('[data-mouse-parallax]');
             if (parallaxContainer) {
