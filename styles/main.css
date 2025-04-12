@@ -749,10 +749,12 @@ header {
 
 .portfolio-item {
     position: relative;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     overflow: hidden;
-    box-shadow: var(--shadow-md);
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .portfolio-item.large {
@@ -761,8 +763,9 @@ header {
 }
 
 .portfolio-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-xl), 0 15px 35px rgba(91, 69, 255, 0.2);
+    z-index: 2;
 }
 
 .portfolio-content {
@@ -770,27 +773,45 @@ header {
     height: 100%;
     position: relative;
     background-color: var(--color-dark);
+    overflow: hidden;
+}
+
+.portfolio-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--glass-bg);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: 1;
+}
+
+.portfolio-item:hover .portfolio-content::before {
+    opacity: 0.2;
 }
 
 /* These would normally have background images, but we're using gradients as placeholders */
 .portfolio-item:nth-child(1) .portfolio-content {
-    background: linear-gradient(135deg, #6C63FF, #43CBFF);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
 }
 
 .portfolio-item:nth-child(2) .portfolio-content {
-    background: linear-gradient(135deg, #FF6584, #FF8DA3);
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-light));
 }
 
 .portfolio-item:nth-child(3) .portfolio-content {
-    background: linear-gradient(135deg, #43CBFF, #1BAEEB);
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
 }
 
 .portfolio-item:nth-child(4) .portfolio-content {
-    background: linear-gradient(135deg, #FF8DA3, #E03E5C);
+    background: linear-gradient(135deg, var(--color-secondary-light), var(--color-secondary-dark));
 }
 
 .portfolio-item:nth-child(5) .portfolio-content {
-    background: linear-gradient(135deg, #928BFF, #6C63FF);
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
 }
 
 .portfolio-overlay {
@@ -804,24 +825,63 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg);
     opacity: 0;
-    transition: height var(--transition-normal), opacity var(--transition-normal);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    transition: all var(--transition-normal);
+    z-index: 2;
+    background: linear-gradient(
+        to top,
+        rgba(30, 30, 66, 0.9),
+        rgba(30, 30, 66, 0.7)
+    );
+    border-top: var(--glass-border);
+    transform: translateY(20px);
 }
 
 .portfolio-item:hover .portfolio-overlay {
     height: 100%;
     opacity: 1;
+    transform: translateY(0);
 }
 
 .portfolio-overlay h3 {
     color: white;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-2xl);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all var(--transition-normal) 0.1s;
 }
 
 .portfolio-overlay p {
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: var(--spacing-md);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--spacing-lg);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all var(--transition-normal) 0.2s;
+}
+
+.portfolio-overlay .btn {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all var(--transition-normal) 0.3s;
+    background: rgba(255, 255, 255, 0.15);
+    border: var(--glass-border);
+    color: white;
+}
+
+.portfolio-overlay .btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: var(--glass-shadow);
+}
+
+.portfolio-item:hover .portfolio-overlay h3,
+.portfolio-item:hover .portfolio-overlay p,
+.portfolio-item:hover .portfolio-overlay .btn {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 /* ---------- Testimonials Section ---------- */
@@ -1025,20 +1085,45 @@ header {
 }
 
 .contact-form-wrapper {
-    background-color: white;
-    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--glass-shadow);
+    border: var(--glass-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: 0;
+}
+
+.contact-form-wrapper:hover::before {
+    opacity: 1;
 }
 
 .contact-form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
+    position: relative;
+    z-index: 1;
 }
 
 .form-group {
     margin-bottom: var(--spacing-md);
+    position: relative;
 }
 
 .form-group.full-width {
@@ -1047,20 +1132,39 @@ header {
 
 .form-group label {
     display: block;
-    margin-bottom: var(--spacing-xs);
-    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
     color: var(--color-dark);
+    font-size: var(--font-size-sm);
+    letter-spacing: 0.02em;
+    transition: color var(--transition-fast);
+}
+
+.form-group:focus-within label {
+    color: var(--color-primary);
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--color-light-gray);
-    border-radius: var(--radius-md);
-    background-color: var(--color-light);
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(230, 234, 255, 0.5);
+    border-radius: var(--radius-lg);
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all var(--transition-fast);
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+    box-shadow: inset 2px 2px 5px rgba(166, 180, 200, 0.15), 
+                inset -2px -2px 5px rgba(255, 255, 255, 0.3);
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .form-group input:focus,
@@ -1068,11 +1172,36 @@ header {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--color-primary-light);
-    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(91, 69, 255, 0.15), 
+                inset 2px 2px 5px rgba(166, 180, 200, 0.1), 
+                inset -2px -2px 5px rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .form-group textarea {
     resize: vertical;
+    min-height: 150px;
+}
+
+.form-submit {
+    grid-column: span 2;
+    margin-top: var(--spacing-md);
+}
+
+.form-submit .btn {
+    width: 100%;
+    justify-content: center;
+    font-size: var(--font-size-lg);
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    color: white;
+    box-shadow: var(--shadow-lg), 0 0 0 0 var(--color-primary);
+    transition: all var(--transition-normal);
+}
+
+.form-submit .btn:hover {
+    box-shadow: var(--shadow-xl), 0 0 25px rgba(91, 69, 255, 0.4);
+    transform: translateY(-5px);
 }
 
 /* ---------- CTA Section ---------- */
