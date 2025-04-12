@@ -768,12 +768,36 @@ header {
     z-index: 2;
 }
 
+.portfolio-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+}
+
 .portfolio-content {
     width: 100%;
     height: 100%;
     position: relative;
-    background-color: var(--color-dark);
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portfolio-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s ease;
+    z-index: 1;
+}
+
+.portfolio-item:hover .portfolio-preview {
+    transform: scale(1.05);
 }
 
 .portfolio-content::before {
@@ -830,7 +854,7 @@ header {
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     transition: all var(--transition-normal);
-    z-index: 2;
+    z-index: 3;
     background: linear-gradient(
         to top,
         rgba(30, 30, 66, 0.9),
