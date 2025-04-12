@@ -157,6 +157,10 @@
         padding: var(--spacing-2xl) 0;
     }
     
+    .portfolio {
+        padding-bottom: var(--spacing-3xl);
+    }
+    
     /* Typography */
     h1 {
         font-size: var(--font-size-3xl);
@@ -176,11 +180,14 @@
     /* Portfolio grid */
     .portfolio-grid {
         grid-template-columns: 1fr;
+        gap: 2.5rem;
+        margin-bottom: 1rem;
     }
     
     .portfolio-item {
         min-height: 280px;
         height: auto;
+        margin-bottom: 1rem;
     }
     
     .portfolio-item.large {
@@ -266,12 +273,23 @@
     }
     
     /* Portfolio section */
+    .portfolio {
+        padding-bottom: var(--spacing-4xl);
+    }
+    
+    .portfolio-grid {
+        gap: 3rem;
+        margin-bottom: 1.5rem;
+    }
+    
     .portfolio-item {
         height: 250px;
+        margin-bottom: 1.5rem;
     }
     
     .portfolio-item.large {
         height: 300px;
+        margin-bottom: 2rem;
     }
     
     .portfolio-overlay {
