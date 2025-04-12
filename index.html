@@ -452,7 +452,9 @@
                 duration: 800,
                 easing: 'ease-out',
                 once: false,
-                mirror: true
+                mirror: true,
+                delay: 100,
+                offset: 120
             });
             
             // Mouse parallax effect
@@ -477,6 +479,10 @@
                         } else if (element.classList.contains('circle')) {
                             strengthX = -20;
                             strengthY = -20;
+                        } else if (element.classList.contains('portfolio-item')) {
+                            // Subtle movement for portfolio items
+                            strengthX = 10;
+                            strengthY = 10;
                         }
                         
                         const moveX = (x - 0.5) * strengthX;
