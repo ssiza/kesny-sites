@@ -6,7 +6,7 @@
     <title>DesignCraft Studio | Modern Web Design Solutions</title>
     <meta name="description" content="Premium web design services creating stunning, functional websites that deliver results.">
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts - SF Pro alternative -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,12 +14,15 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- AOS Animate on Scroll Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/animations.css">
     <link rel="stylesheet" href="styles/responsive.css">
 </head>
-<body>
+<body data-mouse-parallax>
     <!-- Navigation -->
     <header>
         <nav class="container nav-container">
@@ -397,7 +400,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 DesignCraft Studio. All Rights Reserved.</p>
+                <p>&copy; 2025 DesignCraft Studio. All Rights Reserved.</p>
                 <ul>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms of Service</a></li>
@@ -405,5 +408,100 @@
             </div>
         </div>
     </footer>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <!-- Mouse Parallax and Custom JS -->
+    <script>
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS library
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out',
+                once: false,
+                mirror: true
+            });
+            
+            // Mouse parallax effect
+            const parallaxContainer = document.querySelector('[data-mouse-parallax]');
+            if (parallaxContainer) {
+                const parallaxElements = document.querySelectorAll('.blob, .circle, .service-icon, .portfolio-item, .testimonial-card');
+                
+                document.addEventListener('mousemove', function(e) {
+                    const x = e.clientX / window.innerWidth;
+                    const y = e.clientY / window.innerHeight;
+                    
+                    // Apply movement based on mouse position
+                    parallaxElements.forEach(element => {
+                        // Apply different movement strength to different elements
+                        let strengthX = 20;
+                        let strengthY = 20;
+                        
+                        // Add class-specific adjustments
+                        if (element.classList.contains('blob')) {
+                            strengthX = 30;
+                            strengthY = 30;
+                        } else if (element.classList.contains('circle')) {
+                            strengthX = -20;
+                            strengthY = -20;
+                        }
+                        
+                        const moveX = (x - 0.5) * strengthX;
+                        const moveY = (y - 0.5) * strengthY;
+                        
+                        // Apply transform
+                        element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    });
+                });
+            }
+            
+            // Update active nav link on scroll
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            // Add AOS attributes to elements dynamically
+            document.querySelectorAll('.service-card').forEach((el, index) => {
+                el.setAttribute('data-aos', 'fade-up');
+                el.setAttribute('data-aos-delay', (index * 100).toString());
+            });
+            
+            document.querySelectorAll('.portfolio-item').forEach((el, index) => {
+                el.setAttribute('data-aos', 'zoom-in');
+                el.setAttribute('data-aos-delay', (index * 100).toString());
+            });
+            
+            document.querySelectorAll('.testimonial-card').forEach((el, index) => {
+                el.setAttribute('data-aos', index % 2 === 0 ? 'fade-right' : 'fade-left');
+                el.setAttribute('data-aos-delay', (index * 100).toString());
+            });
+            
+            // Form elements animation
+            document.querySelectorAll('.form-group').forEach((el, index) => {
+                el.setAttribute('data-aos', 'fade-up');
+                el.setAttribute('data-aos-delay', (index * 100).toString());
+            });
+        });
+    </script>
 </body>
 </html>
