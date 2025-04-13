@@ -1,0 +1,149 @@
+/*
+* DesignCraft Studio - Badges and Labels Stylesheet
+* Contains styling for badges, labels, and indicators
+*/
+
+/* For Sale Badge */
+.for-sale-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, rgba(38, 208, 124, 0.9), rgba(23, 177, 101, 0.9));
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+    z-index: 5;
+    box-shadow: 0 4px 15px rgba(23, 177, 101, 0.35);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: rotate(0deg);
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.for-sale-badge:hover {
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 6px 20px rgba(23, 177, 101, 0.45);
+}
+
+.portfolio-item:hover .for-sale-badge {
+    animation: badge-pulse 1.5s infinite;
+}
+
+@keyframes badge-pulse {
+    0% {
+        box-shadow: 0 4px 15px rgba(23, 177, 101, 0.35);
+    }
+    70% {
+        box-shadow: 0 4px 25px rgba(23, 177, 101, 0.65);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(23, 177, 101, 0.35);
+    }
+}
+
+.portfolio-item:hover .for-sale-badge.sold {
+    animation: sold-badge-pulse 1.5s infinite;
+}
+
+@keyframes sold-badge-pulse {
+    0% {
+        box-shadow: 0 4px 15px rgba(230, 43, 112, 0.35);
+    }
+    70% {
+        box-shadow: 0 4px 25px rgba(230, 43, 112, 0.65);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(230, 43, 112, 0.35);
+    }
+}
+
+.for-sale-badge.sold {
+    background: linear-gradient(135deg, rgba(255, 74, 141, 0.9), rgba(230, 43, 112, 0.9));
+    box-shadow: 0 4px 15px rgba(230, 43, 112, 0.35);
+}
+
+.for-sale-badge.sold:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 20px rgba(230, 43, 112, 0.45);
+}
+
+/* Price Tag */
+.price-tag {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-md);
+    z-index: 5;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all var(--transition-normal);
+}
+
+.price-tag:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    background: white;
+}
+
+.price-tag i {
+    color: var(--color-primary);
+    font-size: 0.8rem;
+}
+
+/* Featured Badge */
+.featured-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, rgba(255, 184, 0, 0.9), rgba(255, 142, 0, 0.9));
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.3rem 0.7rem;
+    border-radius: 50px;
+    z-index: 5;
+    box-shadow: 0 4px 15px rgba(255, 142, 0, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all var(--transition-normal);
+}
+
+.featured-badge:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 142, 0, 0.45);
+}
+
+/* New Badge */
+.new-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, rgba(0, 210, 255, 0.9), rgba(0, 166, 219, 0.9));
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.3rem 0.7rem;
+    border-radius: 50px;
+    z-index: 5;
+    box-shadow: 0 4px 15px rgba(0, 166, 219, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all var(--transition-normal);
+}
+
+.new-badge:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 166, 219, 0.45);
+}
